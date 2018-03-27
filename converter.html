@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>converter</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="from"> amount:<input  type='number' class="from-control fromnumber"></input> currency: <select id="from">
+		<option value=""></option>
+
+		<option value="USD">USD</option>
+		<option value="EUR">EUR</option>
+		<option value="GBP">GBP</option>
+<option value="GEL">GEL</option>
+
+	</select></div>
+	<div class="to">final amount:<input type="number"  id="tonumber" ></span>wanted currencty: <select id="to">
+		<option value=""></option>
+		<option value="USD">USD</option>
+		<option value="EUR">EUR</option>
+		<option value="GBP">GBP</option>
+		<option value="GEL">GEL</option></select></div>
+		<button class="submit"> exchange the fucking currency</button>
+		<script type="">
+		$(document).ready(function(){
+		$("#from").change(function(){
+
+		fromrate=$("#from").val();
+		$.get( "http://data.fixer.io/api/latest?access_key=5a38a408537b2e1e0fd6b838d0773893&format=1", function(data){
+    	if(fromrate!='EUR'){
+    	from=data.rates[fromrate];
+    	}
+    	else{from=1;
+    	}
+    } );
+		})
+		$("#to").change(function(){
+
+		torate=$("#to").val();
+  $.get( "http://data.fixer.io/api/latest?access_key=5a38a408537b2e1e0fd6b838d0773893&format=1", function(data){
+    	
+    	if(torate!='EUR'){
+    	to=data.rates[torate]}
+    	else{to=1;
+    	}
+    } );
+		})
+    $(".submit").click(function(){
+	fromrate=$("#from").val();
+		torate=$("#to").val();
+    $('#tonumber').val($('.fromnumber').val()/from*to);
+    console.log($('.fromnumber').val()/from*to);
+});
+});
+		</script>
+</body>
+</html>
